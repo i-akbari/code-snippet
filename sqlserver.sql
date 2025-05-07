@@ -36,4 +36,4 @@ EXEC sp_addlinkedsrvlogin
     @useself = 'false',
     @locallogin = 'vc_user', -- e.g., 'ReadOnlyUser'
     @rmtuser = 'salesnetwork_r',        -- e.g., 'RemoteDBUser'
-    @rmtpassword = 'hFRf5tkYbC'; -- password for RemoteUserLogin
+    @rmtpassword = '...'; -- password for RemoteUserLogin
