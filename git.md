@@ -29,5 +29,8 @@ Update user model to support new auth fields.
 
 **Example:** "Update README with installation instructions" (clear and concise).
 
+ - ## This is a very good project:
+    - ### https://www.conventionalcommits.org/en/v1.0.0/
+
 # git commands
 ### git log --oneline
