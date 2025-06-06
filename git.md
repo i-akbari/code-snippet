@@ -1,36 +1,106 @@
 # commit message best practics:
- 1. Use a Clear Structure:
-
-    **Subject Line:** Start with a short (50–72 characters) summary of the change in the imperative mood (e.g., "Add", "Fix", "Update"). This is the first line of the commit message.
-
-    **Body (Optional):** Provide additional context or details in a separate paragraph, wrapping lines at 72 characters for readability.
-
-    **Example:**
-
- ```
-Add user authentication endpoint
-
-Implement the /login endpoint with JWT-based authentication.
-Include validation for email and password fields.
-Update user model to support new auth fields.
-```
-
-2. Write in the Imperative Mood:
-
-    Use commands like **"Add"**, **"Fix"**, **"Update"**, **"Remove"** instead of *"Added"*, *"Fixed"*, or *"Adding"*.
-
-3. Clearly state **what was changed and why** (if not obvious).
-
-4. Format: **type (scope): description**
-
-    **Types:** **feat (new feature), fix (bug fix), docs (documentation), style (formatting), refactor, test, chore (maintenance), etc.**
-
-    **Scope:** Optional; specifies the module or area (e.g., auth, ui, api).
-
-**Example:** "Update README with installation instructions" (clear and concise).
-
  - ## This is a very good project:
     - ### https://www.conventionalcommits.org/en/v1.0.0/
+# 1. format
+```
+<type>[optional scope]: <subject>
 
-# git commands
-### git log --oneline
+[optional body]
+
+[optional footer]
+```
+
+### example:
+
+```
+perf(scroll)!: improve performance by 30%
+
+Use passive event listeners for scroll handling.
+
+JIRA-3463
+BREAKING CHANGE: Requires modern browser support for passive events
+```
+
+### type:
+- officail:
+    - **feat**: A new feature
+    - **fix**: A bug fix
+    - **chore**: Maintenance task (e.g., updating dependencies)
+    - **docs**: Documentation only changes
+    - **style**: Code style changes (no logic change)
+    - **refactor**: Code refactoring (no feature/bug change)
+    - **perf**: Performance improvements
+    - **test**: Adding or modifying tests
+    - **build**: Build system or dependency changes
+    - **ci**: Changes to CI/CD configuration files (e.g., GitHub Actions, Travis, CircleCI)
+    - **revert**: Reverts a previous commit
+- others:
+    - **wip:** Work in progress (not officially part of spec but often used locally)
+        - alternative:
+            - **DRAFT:** Similar to WIP, often used in place of WIP for clarity.
+            - **IN PROGRESS:** More descriptive version of WIP.
+            - **NOT READY:** Clear indication that changes are incomplete.
+    - **config**: Change configuration files (e.g., .eslintrc,.babelrc)
+    - **deploy**: Deployment-related changes
+    - **init**: Initial commit/project setup
+    - **merge**: Merge branch into another
+    - **release**: Version bump or release tag 	
+    - **script**: Add or modify helper scripts
+    - **security**: Security-related fix or enhancement
+    - **sync**: Sync two branches or external sources
+    - **translation**: Translation updates
+    - **typo**: Fix typos
+    - **vendor**: Update third-party libraries or binaries
+
+### scope: 
+**Describes what part of the code was affected (e.g., component, module, file name).**
+- **project**
+- **auth**
+- **router** 
+- **auth**: Authentication logic  
+- **api**: API-related changes (endpoints, clients, etc.)  
+- **ui**: User interface components  
+- **utils**: Utility/helper functions  
+- **config**: Configuration files (e.g., webpack.config.js)  
+- **db**: Database schema, queries, or connections  
+- **deps**: Dependencies (e.g., package.json updates)  
+- **build**: Build system or scripts  
+- **ci**: Continuous integration pipelines (e.g., GitHub Actions, Travis)  
+- **docs**: Documentation (even though it's also a type)  
+- **style**: Styling/CSS/Sass/etc  
+- **perf**: Performance-related areas  
+- **test**: Testing framework or tests  
+- **types**: TypeScript types/interfaces  
+- **logging**: Logging infrastructure  
+- **cache**: Caching logic  
+- **routing**: Routing logic (especially in frontend apps)  
+- **store**: State management (Redux, Vuex, etc.)  
+- **state**: Also used for state management  
+- **i18n**: Internationalization/localization  
+- **network**: Network or HTTP handling  
+- **security**: Security-related changes  
+- **scripts**: Custom dev scripts  
+- **server**: Backend server logic  
+- **client**: Frontend/client-side logic  
+- **mobile**: Mobile-specific code (React Native, Flutter, etc.)  
+- **cli**: Command-line interface tools  
+- **docker**: Dockerfiles or container config  
+- **deploy**: Deployment scripts/configs  
+- **lint**: Linting rules or fixes
+     
+
+### footer:
+- **#123**
+- **JIRA-123**
+- **BREAKING CHANGE**
+
+
+# 2. Write in the Imperative Mood:
+Use commands like **"Add"**, **"Fix"**, **"Update"**, **"Remove"** instead of *"Added"*, *"Fixed"*, or *"Adding"*.
+
+# 3. Clearly state **what was changed and why** (if not obvious).
+
+# 4. git log --oneline
+
+
+
