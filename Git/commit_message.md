@@ -28,7 +28,7 @@ BREAKING CHANGE: Requires modern browser support for passive events
     - **chore**: Maintenance task (e.g., updating dependencies)
     - **docs**: Documentation only changes
     - **style**: Code style changes (no logic change)
-    - **refactor**: Code refactoring (no feature/bug change)
+    - **‍**: Code refactoring (no feature/bug change)
     - **perf**: Performance improvements
     - **test**: Adding or modifying tests
     - **build**: Build system or dependency changes
@@ -100,7 +100,6 @@ Use commands like **"Add"**, **"Fix"**, **"Update"**, **"Remove"** instead of *"
 
 # 3. Clearly state **what was changed and why** (if not obvious).
 
-# 4. git log --oneline
 
 
 
