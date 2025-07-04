@@ -26,6 +26,21 @@ BREAKING CHANGE: Requires modern browser support for passive events
     - **feat**: A new feature
     - **fix**: A bug fix
     - **chore**: Maintenance task (e.g., updating dependencies)
+        - Reorganizing file structures or renaming files for better organization
+        - Adding missing semicolons, fixing indentation, or other style fixes
+        - Cleaning up unused imports, variables, or dead code
+        - Modifying environment configuration files (.env templates, config files)
+        - Updating IDE settings or editor configurations
+        - Changing logging configurations or debugging settings
+        - Adjusting database migration scripts or seed data
+        - Refactoring code structure without changing functionality
+        - Updating license files or legal documentation
+        - Updating build scripts, webpack configs, or bundler settings
+        - Modifying package.json dependencies (adding/removing/updating)
+        - Configuring linters, formatters, or code quality tools
+        - Setting up CI/CD pipeline files (.github/workflows, .gitlab-ci.yml)
+        - Updating Docker files or container configurations
+
     - **docs**: Documentation only changes
     - **style**: Code style changes (no logic change)
     - **‍refactor**: Code refactoring (no feature/bug change)
