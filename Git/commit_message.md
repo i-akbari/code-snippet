@@ -28,7 +28,7 @@ BREAKING CHANGE: Requires modern browser support for passive events
     - **chore**: Maintenance task (e.g., updating dependencies)
     - **docs**: Documentation only changes
     - **style**: Code style changes (no logic change)
-    - **‍**: Code refactoring (no feature/bug change)
+    - **‍refactor**: Code refactoring (no feature/bug change)
     - **perf**: Performance improvements
     - **test**: Adding or modifying tests
     - **build**: Build system or dependency changes
