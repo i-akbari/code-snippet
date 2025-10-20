@@ -37,3 +37,7 @@ EXEC sp_addlinkedsrvlogin
     @locallogin = 'vc_user', -- e.g., 'ReadOnlyUser'
     @rmtuser = 'salesnetwork_r',        -- e.g., 'RemoteDBUser'
     @rmtpassword = '...'; -- password for RemoteUserLogin
+
+
+-- تبدیل تاریخ از میلادی به هجری
+SELECT FORMAT(a.[Date], 'yyyy-MM-dd', 'fa') as date
