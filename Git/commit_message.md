@@ -26,6 +26,7 @@ BREAKING CHANGE: Requires modern browser support for passive events
     - **feat**: A new feature
     - **fix**: A bug fix
     - **chore**: Maintenance task (e.g., updating dependencies)
+        - database schema changes
         - Reorganizing file structures or renaming files for better organization
         - Adding missing semicolons, fixing indentation, or other style fixes
         - Cleaning up unused imports, variables, or dead code
@@ -44,6 +45,7 @@ BREAKING CHANGE: Requires modern browser support for passive events
     - **docs**: Documentation only changes
     - **style**: Code style changes (no logic change)
     - **‍refactor**: Code refactoring (no feature/bug change)
+        - replacing a hardcoded integer constant with a class-level variable
     - **perf**: Performance improvements
     - **test**: Adding or modifying tests
     - **build**: Build system or dependency changes

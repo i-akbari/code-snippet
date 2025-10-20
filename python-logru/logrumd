@@ -1,0 +1,107 @@
+# https://realpython.com/python-loguru
+
+```
+# install
+python -m pip install loguru
+import loguru
+
+from loguru import logger
+# Default Configuration: Loguru logs to stderr 
+
+TRACE 	    logger.trace() 	     5 	Extremely detailed information for debugging
+DEBUG 	    logger.debug() 	    10 	Information useful during development
+INFO 	    logger.info() 	    20 	General information about what’s happening in the code
+SUCCESS 	logger.success() 	25 	Notifications of successful operations
+WARNING 	logger.warning() 	30 	Warnings about something unexpected but not necessarily problematic
+ERROR 	    logger.error() 	    40 	Errors for when something fails but the application continues running
+CRITICAL 	logger.critical() 	50 	Critical errors that are serious and urgent
+
+logger.add(sys.stderr, level="TRACE")
+# sys.stderr—which will be used as a sink or output destination
+# logger.add() method to add a new handler
+# The .add() method returns an integer that uniquely identifies the handler. You can use this identifier to remove the handler later with .remove().
+
+logger.remove()
+logger.remove(0)
+logger.remove(<handler number>)
+The logger.remove() method, when called without an argument, effectively removes all existing handlers, including the default one
+
+# formatting
+logger.add(sys.stderr, format="{message}")
+logger.add(sys.stderr, format="[{time:HH:mm:ss}] >> {name}:{line} >> {level}: {message}"
+# more items in: https://loguru.readthedocs.io/en/stable/api/logger.html#record
+
+# color
+format=(
+        "[<red>{time:HH:mm:ss}</red>] >> "
+        "<yellow>{level}</yellow>: "
+        "<cyan>{message}</cyan>"
+    )
+)
+
+# bind
+logger.add(
+     sys.stderr,
+     format="{time} | {level} | {message} | {extra}"
+ )
+logger.info("User logged in", user_id=123)
+>>> 2025-02-03T10:27:43.451744+0000 | INFO | User logged in | {'user_id': 123}
+
+# contextualize
+>>> with logger.contextualize(request_id="abc789"):
+logger.info("Processing request")
+logger.info("Request completed")
+
+# file
+logger.add("app.log")
+logger.add("app.log", rotation="5 seconds", retention="1 minute")
+
+# rotation
+# The rotation parameter defines when to start a new log file. It accepts several different types of arguments:
+#    Size-based: Creates a new file when size reaches a limit ("100 MB", "2 GB").
+#    Time-based: Creates a new file at specific times ("00:00" for daily).
+#    Interval-based: Creates a new file after set durations ("12 hours", "3 days").
+
+# retention
+# The retention parameter can be either count-based or time-based:
+    # Count-based: Keeps only the N most recent files. For example, retention=3 keeps only the three newest log files and deletes older ones.
+    
+    # Time-based: Removes files older than the specified duration. For example, retention="1 week" automatically deletes any log files older than one week.
+
+# logger decorator
+@logger.catch
+@logger.catch(message="Database connection failed", level="ERROR")
+
+# log in json format 
+logger.add(
+    sys.stderr,
+    serialize=True
+)
+
+# patch() instead of serialize=True
+import json
+from loguru import logger
+
+def simple_serializer(record):
+    subset = {
+        "time": record["time"].timestamp(),
+        "level": record["level"].name,
+        "message": record["message"],
+        "context": record["extra"]  # Include any bound context
+    }
+    return json.dumps(subset)
+
+def add_serialization(record):
+    record["extra"]["json_output"] = simple_serializer(record)
+
+logger.remove()
+logger = logger.patch(add_serialization)
+logger.add("custom.json", format="{extra[json_output]}")
+logger.bind(user="john").info("User logged in")
+logger.bind(order_id=12345).info("Order processed")
+
+```
+
+# https://betterstack.com/community/guides/logging/loguru/#prerequisites
+```
+```
