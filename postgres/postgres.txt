@@ -1,0 +1,54 @@
+ CREATE TABLE backup.employees_copy (LIKE employees INCLUDING ALL);
+INSERT INTO backup.employees_copy SELECT * FROM employees;
+
+
+---------------------------------------------------------------
+
+
+
+-- 1. Create your new table
+CREATE TABLE customer_product_new ( ... );
+
+-- 2. Copy data (if needed)
+INSERT INTO customer_product_new SELECT * FROM customer_product;
+
+-- 3. Rename old table (preserve it)
+ALTER TABLE customer_product RENAME TO customer_product_old;
+
+-- 4. Rename new table to original name
+ALTER TABLE customer_product_new RENAME TO customer_product;
+
+-- 5. Recreate all dependent views
+DROP VIEW IF EXISTS moshaver_moaref_history;
+CREATE VIEW moshaver_moaref_history AS
+  SELECT ... FROM customer_product ...;
+
+-- 6. Recreate foreign key constraints
+ALTER TABLE customer_customer
+  DROP CONSTRAINT customer_customer_fund_aram_consultant_5b6a6335_fk_customer_,
+  ADD CONSTRAINT customer_customer_fund_aram_consultant_5b6a6335_fk_customer_
+    FOREIGN KEY (fund_aram_consultant_id) REFERENCES customer_product(id);
+
+-- 7. (Optional) Drop old table when confident
+DROP TABLE customer_product_old CASCADE;
+
+--------------------------------------------------------------------------------
+
+SELECT
+  dependent_ns.nspname as dependent_schema,
+  dependent_view.relname as dependent_view,
+  source_ns.nspname as source_schema,
+  source_table.relname as source_table,
+  pg_attribute.attname as source_column
+FROM
+  pg_depend
+  JOIN pg_rewrite ON pg_depend.objid = pg_rewrite.oid
+  JOIN pg_class as dependent_view ON pg_rewrite.ev_class = dependent_view.oid
+  JOIN pg_class as source_table ON pg_depend.refobjid = source_table.oid
+  JOIN pg_namespace dependent_ns ON dependent_ns.oid = dependent_view.relnamespace
+  JOIN pg_namespace source_ns ON source_ns.oid = source_table.relnamespace
+  LEFT JOIN pg_attribute ON pg_attribute.attrelid = source_table.oid
+    AND pg_attribute.attnum = pg_depend.refobjsubid
+WHERE
+  source_table.relname = 'customer_product'
+  AND pg_depend.deptype = 'n';  -- normal dependency
