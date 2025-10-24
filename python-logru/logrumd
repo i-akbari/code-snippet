@@ -22,7 +22,7 @@ logger.add(sys.stderr, level="TRACE")
 # The .add() method returns an integer that uniquely identifies the handler. You can use this identifier to remove the handler later with .remove().
 
 logger.remove()
-logger.remove(0)
+logger.remove(0) # remove only the default handler
 logger.remove(<handler number>)
 The logger.remove() method, when called without an argument, effectively removes all existing handlers, including the default one
 
@@ -39,7 +39,12 @@ format=(
     )
 )
 
-# bind
+# Adding Context to Logs
+
+1. The simplest approach is to pass keyword arguments directly to your logging methods:
+
+you pass a keyword argument user_id=123 to logger.info() to add extra context. This extra information is then accessible in the log format using {extra}.
+
 logger.add(
      sys.stderr,
      format="{time} | {level} | {message} | {extra}"
@@ -47,30 +52,47 @@ logger.add(
 logger.info("User logged in", user_id=123)
 >>> 2025-02-03T10:27:43.451744+0000 | INFO | User logged in | {'user_id': 123}
 
-# contextualize
->>> with logger.contextualize(request_id="abc789"):
-logger.info("Processing request")
-logger.info("Request completed")
+you pass a keyword argument user_id=123 to logger.info() to add extra context. 
+
+For context that needs to persist across multiple log entries, Loguru provides two powerful methods:
+- bind
+- contextualize
+
+2. bind: Creates a new logger with permanent context for all logs
+
+
+3. contextualize: Temporarily adds context within a code block using a context manager
+
+with logger.contextualize(request_id="abc789"):
+    logger.info("Processing request")
+    logger.info("Request completed")
 
 # file
 logger.add("app.log")
 logger.add("app.log", rotation="5 seconds", retention="1 minute")
 
-# rotation
-# The rotation parameter defines when to start a new log file. It accepts several different types of arguments:
-#    Size-based: Creates a new file when size reaches a limit ("100 MB", "2 GB").
-#    Time-based: Creates a new file at specific times ("00:00" for daily).
-#    Interval-based: Creates a new file after set durations ("12 hours", "3 days").
+### rotation
+- The rotation parameter defines when to start a new log file. It accepts several different types of arguments:
+    -    Size-based: Creates a new file when size reaches a limit ("100 MB", "2 GB").
+    -    Time-based: Creates a new file at specific times ("00:00" for daily).
+    -    Interval-based: Creates a new file after set durations ("12 hours", "3 days").
 
-# retention
-# The retention parameter can be either count-based or time-based:
-    # Count-based: Keeps only the N most recent files. For example, retention=3 keeps only the three newest log files and deletes older ones.
+### retention
+- The retention parameter can be either count-based or time-based:
+    - Count-based: Keeps only the N most recent files. For example, retention=3 keeps only the three newest log files and deletes older ones.
     
-    # Time-based: Removes files older than the specified duration. For example, retention="1 week" automatically deletes any log files older than one week.
+    - Time-based: Removes files older than the specified duration. For example, retention="1 week" automatically deletes any log files older than one week.
 
 # logger decorator
 @logger.catch
+
 @logger.catch(message="Database connection failed", level="ERROR")
+def connect_to_db(host, port):
+    if port < 1000:
+        raise ValueError("Invalid port number")
+    # Simulated database connection
+    return 1 / 0  # Simulate error
+
 
 # log in json format 
 logger.add(
