@@ -1,0 +1,5 @@
+for i in {2..4};do ffmpeg -i "Anari PAT-Chapter $i.wmv" -i "Anari PAT-Chapter $i.mp3" -c:v copy -map 0:v:0 -map 1:a:0 "Anari PAT-Chapter $i.mkv";done
+for i in {1..5};do ffmpeg -i "Anari PAT-Chapter 5- Part $i.wmv" -i "Anari PAT-Chapter 5- Part $i.mp3" -c:v copy -map 0:v:0 -map 1:a:0 "Anari PAT-Chapter 5- Part $i.mkv";done
+for i in {1..4};do ffmpeg -i "Anari PAT-Chapter 6- Part $i.wmv" -i "Anari PAT-Chapter 6- Part $i.mp3" -c:v copy -map 0:v:0 -map 1:a:0 "Anari PAT-Chapter 6- Part $i.mkv";done
+
+ffmpeg -i "Anari PAT-Chapter 7.wmv" -i "Anari PAT-Chapter 7.mp3" -c:v copy -map 0:v:0 -map 1:a:0 "Anari PAT-Chapter 7.mkv"
