@@ -12,6 +12,7 @@ git merge --no-ff user-authentication
 
 git push origin main
 git branch -d user-authentication
+git push origin --delete feature-branch-name
 ```
 
 ### 1. Switch to the target branch
