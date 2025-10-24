@@ -1,0 +1,59 @@
+document.querySelector('source[src*=".mp4"]').getAttribute('src')
+document.querySelector('svg[aria-label="video icon"][class="ml-fds-2 "]').parentElement.parentElement.parentElement.parentElement.children[1].children[0].textContent
+
+document.querySelector('div[id*="step"] > :nth-child(2)>p').textContent
+
+
+Array.from(document.querySelectorAll('div[id*="step"] > :nth-child(2)>p'), el => el.textContent)
+
+Array.from(document.querySelectorAll('div[id*="step"] > :nth-child(2)> :nth-child(1)'), el => el.textContent)
+
+
+
+document.querySelectorAll('div[id*="step"] > :nth-child(2)> :nth-child(1)').forEach((el, index) => {
+    setTimeout(() => {
+        el.click();
+        console.log(document.querySelector('source[src*=".mp4"]').getAttribute('src'), document.querySelector('svg[aria-label="video icon"][class="ml-fds-2 "]').parentElement.parentElement.parentElement.parentElement.children[1].children[0].textContent)
+    }, 2000)
+});
+
+console.log(document.querySelector('source[src*=".mp4"]').getAttribute('src'), document.querySelector('svg[aria-label="video icon"][class="ml-fds-2 "]').parentElement.parentElement.parentElement.parentElement.children[1].children[0].textContent)
+
+//-----------------------------------------------------------------------------------------------------------
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+(async () => {
+    const items = document.querySelectorAll('div[id*="step"] > :nth-child(2)> :nth-child(1)');
+
+    for (let item of items) {
+        try {
+                item.click();
+
+                await wait(1000);
+
+                console.log(document.querySelector('source[src*=".mp4"]').getAttribute('src') + ',' + document.querySelector('svg[aria-label="video icon"][class="ml-fds-2 "]').parentElement.parentElement.parentElement.parentElement.children[1].children[0].textContent + ',')
+            }
+        catch(errors){}
+
+        }
+    console.log('🎉 All done!');
+})();
+
+
+grep "^http" urls.txt > urls2.txt
+
+# rename
+count=1
+while IFS=$',' read -r url title none; do
+    filename=$(echo "$url"|cut -d'/' -f7)
+    mv $filename "$count.$title.mp4"
+    count=$((count + 1))
+done < urls2.txt
+
+# download
+count=1
+while IFS=$',' read -r url title none; do
+    filename=$(echo "$url"|cut -d'/' -f7)
+    wget -O  "$count.$title.mp4" "$url"
+    count=$((count + 1))
+done < urls2.txt
