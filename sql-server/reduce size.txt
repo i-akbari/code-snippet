@@ -1,0 +1,33 @@
+select * from mz_fund.dbo.sysfiles
+
+use mz_fund
+ALTER DATABASE mz_fund SET RECOVERY SIMPLE
+DBCC SHRINKFILE ('imported_extra_2', 1)
+ALTER DATABASE mz_fund SET RECOVERY Full
+
+select * from [PowerBI_ReportServer].dbo.sysfiles
+
+use [PowerBI_ReportServer]
+ALTER DATABASE [PowerBI_ReportServer] SET RECOVERY SIMPLE
+DBCC SHRINKFILE ('PowerBI_ReportServer', 1)
+ALTER DATABASE [PowerBI_ReportServer] SET RECOVERY Full
+
+use [PowerBI_ReportServer]
+ALTER DATABASE [PowerBI_ReportServer] SET RECOVERY SIMPLE
+DBCC SHRINKFILE ('PowerBI_ReportServer_log', 1)
+ALTER DATABASE [PowerBI_ReportServer] SET RECOVERY Full
+
+use [PowerBI_ReportServer]
+ALTER DATABASE [PowerBI_ReportServer] SET RECOVERY SIMPLE
+DBCC SHRINKFILE ('PowerBI_ReportServer_extra', 1)
+ALTER DATABASE [PowerBI_ReportServer] SET RECOVERY Full
+
+use [PowerBI_ReportServer]
+ALTER DATABASE [PowerBI_ReportServer] SET RECOVERY SIMPLE
+DBCC SHRINKFILE ('PowerBI_ReportServer_log_extra_3', 1)
+ALTER DATABASE [PowerBI_ReportServer] SET RECOVERY Full
+
+use [PowerBI_ReportServer]
+ALTER DATABASE [PowerBI_ReportServer] SET RECOVERY SIMPLE
+DBCC SHRINKFILE ('PowerBI_ReportServer_log_extra_2', 1)
+ALTER DATABASE [PowerBI_ReportServer] SET RECOVERY Full
