@@ -15,21 +15,24 @@ git branch -d user-authentication
 git push origin --delete feature-branch-name
 ```
 
-### 1. Switch to the target branch
+## 1. Switch to the target branch
 ```bash
 git checkout main          # or your target branch (e.g., develop)
 ```
 
-### 2. Make sure your target branch is up to date
+## 2. Make sure your target branch is up to date
 ```bash
 git pull origin main       # pulls latest changes from remote
 ```
 
-### 3. Merge the feature branch
+## 3. Merge the feature branch
 ```bash
 git merge feature-branch-name
 ```
 - Git will attempt to perform a fast-forward merge (if possible) or create a merge commit. 
+
+- `git merge --no-ff user-authentication`
+### Use if you want to preserve branch history explicitly (creates a merge commit even if fast-forward is possible).
 
 ### 4. Resolve conflicts (if any) 
 - resolve confilict:
