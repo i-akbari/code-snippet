@@ -9,7 +9,7 @@
 yt-dlp --cookies-from-browser firefox --proxy http://127.0.0.1:2081 --write-subs --sub-lang en,fa --embed-subs https://www.youtube.com/watch?v=o5coAL7oE0o
 
 # playlist
-yt-dlp --cookies-from-browser firefox --proxy http://127.0.0.1:2081 --write-auto-subs --sub-lang en --embed-subs -f "bestvideo[height<=720]+bestaudio/best" -o "%(playlist_index)s-%(title)s.%(ext)s" <playlist_url>
+yt-dlp --cookies-from-browser firefox --proxy http://127.0.0.1:2081 --write-auto-subs --sub-lang en --embed-subs -f "bestvideo[height<=720]+bestaudio/best" -o "%(playlist_index)s-%(title)s.%(ext)s" --playlist-start 1 <playlist_url>
 ```
 
 # install and commands
